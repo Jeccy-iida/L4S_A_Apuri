@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#DFF5F8"
     tools:context=".DetailActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -15,15 +16,21 @@
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+
+        app:titleTextColor="#16AFCA" />
 
 
     <TextView
         android:id="@+id/titleTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="160dp"
+        android:layout_width="300dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="120dp"
+        android:background="#A8FFFFFF"
+        android:fontFamily="monospace"
+        android:gravity="center"
         android:text="TextView"
+        android:textColor="#00BCD4"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,10 +39,14 @@
 
     <TextView
         android:id="@+id/levelText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:background="#A8FFFFFF"
+        android:fontFamily="monospace"
+        android:gravity="center"
         android:text="TextView"
+        android:textColor="#00BCD4"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,10 +54,14 @@
 
     <TextView
         android:id="@+id/descriptionTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_width="300dp"
+        android:layout_height="320dp"
+        android:layout_marginTop="20dp"
+        android:background="#A8FFFFFF"
+        android:fontFamily="monospace"
+        android:gravity="center"
         android:text="TextView"
+        android:textColor="#00BCD4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/levelText" />

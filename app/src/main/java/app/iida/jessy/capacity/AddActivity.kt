@@ -1,5 +1,7 @@
 package app.iida.jessy.capacity
 
+import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -9,6 +11,7 @@ import androidx.appcompat.widget.Toolbar
 import com.google.android.material.snackbar.Snackbar
 import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_add.*
+
 
 class AddActivity : AppCompatActivity() {
 
@@ -28,7 +31,6 @@ class AddActivity : AppCompatActivity() {
 //            descriptionEditText.setText(memo.description)
 //        }
 
-
         //追加ボタンを押した時に入力されたテキストを取得しsave()メソッドに値を渡す
         addButton.setOnClickListener {
             val title: String = titleEditText.text.toString()
@@ -36,7 +38,6 @@ class AddActivity : AppCompatActivity() {
             val descriptor: String = descriptionEditText.text.toString()
             save(title,level,levelname,descriptor)
         }
-
 
         radioButton01.setOnClickListener{
             val checked = radioButton01.isChecked
@@ -111,8 +112,7 @@ class AddActivity : AppCompatActivity() {
 //            }
 //        }
 
-
-            //戻るのボタン設定
+        //戻るのボタン設定
 
         // activity_toolbar_sample.xml からToolbar要素を取得
         val toolbar2 = findViewById<Toolbar>(R.id.toolBar2)
@@ -121,9 +121,7 @@ class AddActivity : AppCompatActivity() {
         // ツールバーに戻るボタンを設置
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-
     }
-
 
     // ツールバーのアイテムを押した時の処理を記述（今回は戻るボタンのみのため、戻るボタンを押した時の処理しか記述していない）
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -152,8 +150,17 @@ class AddActivity : AppCompatActivity() {
             newTask.level = level
             newTask.levelname = levelname
             newTask.description = description
-        }
 
-        Snackbar.make(container, "保存しました!!", Snackbar.LENGTH_SHORT).show()
+
+        // 1. 宣言的に AddActivityを終了させる
+        val result = Intent()
+        // 2. newTaskのIDを渡す(
+        result.putExtra("TaskID", newTask.id)
+        setResult(Activity.RESULT_OK, result)
+        finish()
+
+        // 色々あってAddActivityではスナックバーを呼び出せないのでMainActivityでスナックバーを表示するのがよいかも
+        // Snackbar.make(container, "保存しました!!", Snackbar.LENGTH_SHORT).show()
+    }
     }
 }

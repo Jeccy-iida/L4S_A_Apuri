@@ -21,6 +21,7 @@ class DetailActivity : AppCompatActivity() {
             setContentView(R.layout.activity_detail)
 
             //受け取った変数を入れる (IDはお役御免
+            //intent.getStringExtrは画面遷移の際に使う
             val id = intent.getStringExtra("ID")
 
             //bookの中身は25行目のid検索の結果出てきた１つのBookが入ってる

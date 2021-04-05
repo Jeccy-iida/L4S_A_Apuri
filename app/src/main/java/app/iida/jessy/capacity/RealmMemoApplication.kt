@@ -4,7 +4,7 @@ import android.app.Application
 import io.realm.Realm
 import io.realm.RealmConfiguration
 
-class RealmMemoApplication : Application(){
+class RealmMemoApplication<T, U> : Application(){
 
     override fun onCreate() {
         super.onCreate()
@@ -15,4 +15,6 @@ class RealmMemoApplication : Application(){
             .build()
         Realm.setDefaultConfiguration(realmConfig)
     }
+
+    fun onBindViewHolder(holder: TaskAdapter.TaskViewHolder, position: Int) {}
 }

@@ -3,7 +3,7 @@ package app.iida.jessy.capacity
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
 import java.util.*
-
+//class とは？
 open class Task (
     //ID
     @PrimaryKey open var id: String = UUID.randomUUID().toString(),
