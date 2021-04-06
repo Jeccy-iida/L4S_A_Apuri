@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity() {
             mainTextTitle.text = "やばい！何か削れないかな？"
             // sumが100以上
         } else {
-            mainTextTitle.text = "危険 ！ キャパオーバー 　 絶対何も入れないで"
+            mainTextTitle.text = "キャパオーバー！ 　 絶対何も入れないで"
         }
     }
 
