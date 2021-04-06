@@ -4,8 +4,10 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PersistableBundle
 import io.realm.Realm
 import io.realm.RealmResults
+import kotlinx.android.synthetic.main.activity_add.*
 import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.stream.Collectors.groupingBy
@@ -31,28 +33,46 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    //この画面に来たら更新されるもの
-
-override fun onResume() {
-
-    super.onResume()
+//    この画面に来たら更新されるもの
+    override fun onResume() {
+        super.onResume()
 
 //    合計を入れる変数
-    var sum: Int = 0
+        var sum: Int = 0
 
-    //記入したデーターを全て読み込んでる。１つだけならval book: Book? = read()
-    val taskList = readAll()
+        //記入したデーターを全て読み込んでる。１つだけならval book: Book? = read()
+        val taskList = readAll()
 
 //    forでlevelの取り出し
-    taskList.forEach{
-        //sum のところでそれぞれのスコアを足す
-        sum += it.level
+        taskList.forEach {
+            //sum のところでそれぞれのスコアを足す
+            sum += it.level
+        }
+
+        //TextViewに表示する
+        totalTextView.text = sum.toString()
+//        radioButton02.setOnClickListener {
+//            val checked = radioButton02.isChecked
+//        }
+
+//        //TextViewにコメントを表示する
+        if (0 <= sum && sum <= 50) {
+            // sumが0以上50以下
+            mainTextTitle.text = "いい感じ！"
+            //     sumが50以上75以下
+        } else if (50 <= sum && sum <= 75) {
+            mainTextTitle.text = "そろそろ減らしたいね"
+            // sumが75以上90以下
+        } else if (75 <= sum && sum <= 90) {
+            mainTextTitle.text = "そろそろ追加しない方がいいかも"
+            // sumが90以上100以下
+        } else if (90 <= sum && sum <= 100) {
+            mainTextTitle.text = "やばい！何か削れないかな？"
+            // sumが100以上
+        } else {
+            mainTextTitle.text = "危険 ！ キャパオーバー 　 絶対何も入れないで"
+        }
     }
-
-    //TextViewに表示する
-    totalTextView.text = sum.toString()
-
-}
 
     //    realmのデータ取得
     fun readAll(): RealmResults<Task> {
