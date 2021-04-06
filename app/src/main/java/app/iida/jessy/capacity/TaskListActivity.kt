@@ -27,8 +27,8 @@ class TaskListActivity : AppCompatActivity() {
     //記入したデーターを全て読み込んでる。１つだけならval book: Book? = read()
     val taskList = readAll()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onResume() {
+        super.onResume()
         setContentView(R.layout.activity_task_list)
 
         //toolbarをTopbarに設定してる
@@ -175,6 +175,7 @@ class TaskListActivity : AppCompatActivity() {
         realm.close()
     }
 
+//    realmデータの取得方法
     fun readAll(): RealmResults<Task> {
         return realm.where(Task::class.java).findAll()
     }

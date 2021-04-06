@@ -28,6 +28,7 @@ class DetailActivity : AppCompatActivity() {
             val task = read(id!!)
 
             //取り出した情報を各入れ物に入れる
+//           titleTextViewのtextに taskのtitleが欲しいから↓
             titleTextView.text = task?.title
             levelText.text = task?.levelname
             descriptionTextView.text = task?.description

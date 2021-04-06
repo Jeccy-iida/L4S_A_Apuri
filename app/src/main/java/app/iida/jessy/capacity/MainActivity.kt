@@ -32,21 +32,32 @@ class MainActivity : AppCompatActivity() {
     }
 
     //この画面に来たら更新されるもの
-    /*
+
 override fun onResume() {
 
     super.onResume()
-    //受け取った変数を入れる (IDはお役御免
-    val id = ("ID")
 
-    //taskの中身はid検索の結果出てきた全てのデータが入ってる
-    val task = readAll(id)
-    //各タスクのレベルを足し合わせて合計値を計算したい
+//    合計を入れる変数
+    var sum: Int = 0
 
-    //取り出した情報を入れ物に入れる
+    //記入したデーターを全て読み込んでる。１つだけならval book: Book? = read()
+    val taskList = readAll()
+
+//    forでlevelの取り出し
+    taskList.forEach{
+        //sum のところでそれぞれのスコアを足す
+        sum += it.level
+    }
+
+    //TextViewに表示する
+    totalTextView.text = sum.toString()
 
 }
-    */
+
+    //    realmのデータ取得
+    fun readAll(): RealmResults<Task> {
+        return realm.where(Task::class.java).findAll()
+    }
 
     override fun onActivityResult(level: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(level, resultCode, data)
@@ -61,7 +72,7 @@ override fun onResume() {
             val id = data.getStringExtra("TaskID")
 
             // 3. AddActivityで直近に保存したTaskを読み込み操作を行う
-            val task = readAll(id!!)
+            val task = read(id!!)
 
             totalTextView.text = task?.level.toString()
         }
@@ -69,7 +80,7 @@ override fun onResume() {
 
     }
 
-    fun readAll(id: String): Task? {
+    fun read(id: String): Task? {
         return realm.where(Task::class.java).equalTo("id" , id).findFirst()
     }
 }
